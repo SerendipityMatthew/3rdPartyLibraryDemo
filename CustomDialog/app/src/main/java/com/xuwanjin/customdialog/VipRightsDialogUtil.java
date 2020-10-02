@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -169,14 +171,39 @@ public class VipRightsDialogUtil {
     public static class DialogDecoration {
         @DrawableRes
         private int upperLeftCornerResId;
+        private String upperLeftCornerUrl;
         @DrawableRes
         private int leftMiddleResId;
+        private String leftMiddleUrl;
         @DrawableRes
         private int rightMiddleResId;
+        private String rightMiddleUrl;
         @DrawableRes
         private int lowerLeftCornerResId;
+        private String lowerLeftCornerUrl;
         @DrawableRes
         private int lowerRightCornerResId;
+        private String lowerRightCornerUrl;
+
+        public void setUpperLeftCornerUrl(String upperLeftCornerUrl) {
+            this.upperLeftCornerUrl = upperLeftCornerUrl;
+        }
+
+        public void setLeftMiddleUrl(String leftMiddleUrl) {
+            this.leftMiddleUrl = leftMiddleUrl;
+        }
+
+        public void setRightMiddleUrl(String rightMiddleUrl) {
+            this.rightMiddleUrl = rightMiddleUrl;
+        }
+
+        public void setLowerLeftCornerUrl(String lowerLeftCornerUrl) {
+            this.lowerLeftCornerUrl = lowerLeftCornerUrl;
+        }
+
+        public void setLowerRightCornerUrl(String lowerRightCornerUrl) {
+            this.lowerRightCornerUrl = lowerRightCornerUrl;
+        }
 
         public void setUpperLeftCornerResId(int upperLeftCornerResId) {
             this.upperLeftCornerResId = upperLeftCornerResId;
@@ -438,11 +465,46 @@ public class VipRightsDialogUtil {
             dialogDecoration.leftMiddleResId = R.drawable.shake_ball_left;
             dialogDecoration.rightMiddleResId = R.drawable.shake_ball_right;
         }
-        setDialogDecorationItemBackground(upperLeftCorner, dialogDecoration.upperLeftCornerResId);
-        setDialogDecorationItemBackground(lowerLeftCorner, dialogDecoration.lowerLeftCornerResId);
-        setDialogDecorationItemBackground(lowerRightCorner, dialogDecoration.lowerRightCornerResId);
-        setDialogDecorationItemBackground(leftMiddle, dialogDecoration.leftMiddleResId);
-        setDialogDecorationItemBackground(rightMiddle, dialogDecoration.rightMiddleResId);
+        if (TextUtils.isEmpty(dialogDecoration.upperLeftCornerUrl)){
+            setDialogDecorationItemBackground(upperLeftCorner, dialogDecoration.upperLeftCornerResId);
+        }else {
+            Glide.with(contentView)
+                    .load(dialogDecoration.upperLeftCornerUrl)
+                    .placeholder(R.drawable.crown)
+                    .into(upperLeftCorner);
+        }
+        if (TextUtils.isEmpty(dialogDecoration.lowerLeftCornerUrl)){
+            setDialogDecorationItemBackground(lowerLeftCorner, dialogDecoration.lowerLeftCornerResId);
+        }else {
+            Glide.with(contentView)
+                    .load(dialogDecoration.lowerLeftCornerUrl)
+                    .placeholder(R.drawable.ribbon_green)
+                    .into(lowerLeftCorner);
+        }
+        if (TextUtils.isEmpty(dialogDecoration.lowerRightCornerUrl)){
+            setDialogDecorationItemBackground(lowerRightCorner, dialogDecoration.lowerRightCornerResId);
+        }else {
+            Glide.with(contentView)
+                    .load(dialogDecoration.lowerRightCornerUrl)
+                    .placeholder(R.drawable.ribbon_blue)
+                    .into(lowerRightCorner);
+        }
+        if (TextUtils.isEmpty(dialogDecoration.leftMiddleUrl)){
+            setDialogDecorationItemBackground(leftMiddle, dialogDecoration.leftMiddleResId);
+        }else {
+            Glide.with(contentView)
+                    .load(dialogDecoration.leftMiddleUrl)
+                    .placeholder(R.drawable.shake_ball_left)
+                    .into(leftMiddle);
+        }
+        if (TextUtils.isEmpty(dialogDecoration.rightMiddleUrl)){
+            setDialogDecorationItemBackground(rightMiddle, dialogDecoration.rightMiddleResId);
+        }else {
+            Glide.with(contentView)
+                    .load(dialogDecoration.rightMiddleUrl)
+                    .placeholder(R.drawable.shake_ball_right)
+                    .into(rightMiddle);
+        }
     }
 
     private static void fillVipRightsItem(final Context activity, View contentView, VipRightsDialog vipRightsDialog) {
