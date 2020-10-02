@@ -276,7 +276,7 @@ public class VipRightsDialogUtil {
         final View contentView = LayoutInflater.from(activity).inflate(R.layout.vip_dialog, null);
         dialog.setContentView(contentView);
 
-        setDialogDecoration(contentView, vipRightsDialog.dialogDecoration);
+        setDialogDecoration(activity, contentView, vipRightsDialog.dialogDecoration);
 
         fillVipRightsItem(activity, contentView, vipRightsDialog);
 
@@ -449,7 +449,7 @@ public class VipRightsDialogUtil {
         dialog.show();
     }
 
-    private static void setDialogDecoration(View contentView, DialogDecoration dialogDecoration) {
+    private static void setDialogDecoration(Context context, View contentView, DialogDecoration dialogDecoration) {
 
         ImageView upperLeftCorner = contentView.findViewById(R.id.upper_left_corner);
         ImageView lowerLeftCorner = contentView.findViewById(R.id.lower_left_corner);
@@ -465,46 +465,12 @@ public class VipRightsDialogUtil {
             dialogDecoration.leftMiddleResId = R.drawable.shake_ball_left;
             dialogDecoration.rightMiddleResId = R.drawable.shake_ball_right;
         }
-        if (TextUtils.isEmpty(dialogDecoration.upperLeftCornerUrl)){
-            setDialogDecorationItemBackground(upperLeftCorner, dialogDecoration.upperLeftCornerResId);
-        }else {
-            Glide.with(contentView)
-                    .load(dialogDecoration.upperLeftCornerUrl)
-                    .placeholder(R.drawable.crown)
-                    .into(upperLeftCorner);
-        }
-        if (TextUtils.isEmpty(dialogDecoration.lowerLeftCornerUrl)){
-            setDialogDecorationItemBackground(lowerLeftCorner, dialogDecoration.lowerLeftCornerResId);
-        }else {
-            Glide.with(contentView)
-                    .load(dialogDecoration.lowerLeftCornerUrl)
-                    .placeholder(R.drawable.ribbon_green)
-                    .into(lowerLeftCorner);
-        }
-        if (TextUtils.isEmpty(dialogDecoration.lowerRightCornerUrl)){
-            setDialogDecorationItemBackground(lowerRightCorner, dialogDecoration.lowerRightCornerResId);
-        }else {
-            Glide.with(contentView)
-                    .load(dialogDecoration.lowerRightCornerUrl)
-                    .placeholder(R.drawable.ribbon_blue)
-                    .into(lowerRightCorner);
-        }
-        if (TextUtils.isEmpty(dialogDecoration.leftMiddleUrl)){
-            setDialogDecorationItemBackground(leftMiddle, dialogDecoration.leftMiddleResId);
-        }else {
-            Glide.with(contentView)
-                    .load(dialogDecoration.leftMiddleUrl)
-                    .placeholder(R.drawable.shake_ball_left)
-                    .into(leftMiddle);
-        }
-        if (TextUtils.isEmpty(dialogDecoration.rightMiddleUrl)){
-            setDialogDecorationItemBackground(rightMiddle, dialogDecoration.rightMiddleResId);
-        }else {
-            Glide.with(contentView)
-                    .load(dialogDecoration.rightMiddleUrl)
-                    .placeholder(R.drawable.shake_ball_right)
-                    .into(rightMiddle);
-        }
+        setDialogDecorationItem(context, upperLeftCorner, dialogDecoration.upperLeftCornerUrl, dialogDecoration.upperLeftCornerResId, R.drawable.crown);
+        setDialogDecorationItem(context, lowerLeftCorner, dialogDecoration.lowerLeftCornerUrl, dialogDecoration.lowerLeftCornerResId, R.drawable.ribbon_green);
+        setDialogDecorationItem(context, lowerRightCorner, dialogDecoration.lowerRightCornerUrl, dialogDecoration.lowerRightCornerResId, R.drawable.ribbon_blue);
+        setDialogDecorationItem(context, leftMiddle, dialogDecoration.leftMiddleUrl, dialogDecoration.leftMiddleResId, R.drawable.shake_ball_left);
+        setDialogDecorationItem(context, rightMiddle, dialogDecoration.rightMiddleUrl, dialogDecoration.rightMiddleResId, R.drawable.shake_ball_right);
+
     }
 
     private static void fillVipRightsItem(final Context activity, View contentView, VipRightsDialog vipRightsDialog) {
@@ -571,6 +537,27 @@ public class VipRightsDialogUtil {
         });
     }
 
+    /**
+     * 资源的URL
+     * 本资源
+     *
+     * @param context
+     * @param decorationItem
+     * @param pictureUrl
+     * @param decorationResId
+     * @param defaultResId
+     */
+    public static void setDialogDecorationItem(Context context,ImageView decorationItem, String pictureUrl,
+                                               int decorationResId, @DrawableRes int defaultResId) {
+        if (TextUtils.isEmpty(pictureUrl)){
+            setDialogDecorationItemBackground(decorationItem, decorationResId);
+        }else {
+            Glide.with(context)
+                    .load(pictureUrl)
+                    .placeholder(defaultResId)
+                    .into(decorationItem);
+        }
+    }
     /**
      * 显示默认的
      * 隐藏
