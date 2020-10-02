@@ -541,7 +541,7 @@ public class VipRightsDialogUtil {
      * @param decorationItem
      * @param defaultResId
      */
-    public static void setDialogDecorationItem(Context context, ImageView imageViewItem, DialogDecorationItem decorationItem, @DrawableRes int defaultResId) {
+    public static void  setDialogDecorationItem(Context context, ImageView imageViewItem, DialogDecorationItem decorationItem, @DrawableRes int defaultResId) {
         if (decorationItem == null || TextUtils.isEmpty(decorationItem.resUrl)) {
             setDialogDecorationItemBackground(imageViewItem, decorationItem == null ? 0 : decorationItem.resId);
         } else {
@@ -553,7 +553,7 @@ public class VipRightsDialogUtil {
     }
 
     /**
-     * @param decorationItem  要显示的资源
+     * @param decorationItem  显示的 ImageView
      * @param decorationResId 显示自己订制的资源
      */
     public static void setDialogDecorationItemBackground(ImageView decorationItem, int decorationResId) {
