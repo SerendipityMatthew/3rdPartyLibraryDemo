@@ -261,7 +261,7 @@ public class VipRightsDialogUtil {
         LinearLayout rightButtonContainer = contentView.findViewById(R.id.right_button_container);
         TextView leftButtonSuperscript = contentView.findViewById(R.id.left_button_superscript);
         TextView rightButtonSuperscript = contentView.findViewById(R.id.right_button_superscript);
-        TextView close = contentView.findViewById(R.id.iv_close);
+        ImageView close = contentView.findViewById(R.id.iv_close);
         TextView content = contentView.findViewById(R.id.vip_rights_content);
         content.setText(vipRightsDialog.dialogContent);
 
