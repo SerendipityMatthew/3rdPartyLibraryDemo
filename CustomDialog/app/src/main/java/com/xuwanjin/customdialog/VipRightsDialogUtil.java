@@ -168,61 +168,47 @@ public class VipRightsDialogUtil {
         public CharSequence vipRightsName;
     }
 
+    public static class DialogDecorationItem {
+        @DrawableRes
+        private int resId;
+        private String resUrl;
+
+        public DialogDecorationItem setResId(int resId) {
+            this.resId = resId;
+            return this;
+        }
+
+        public DialogDecorationItem setResUrl(String resUrl) {
+            this.resUrl = resUrl;
+            return this;
+        }
+    }
+
     public static class DialogDecoration {
-        @DrawableRes
-        private int upperLeftCornerResId;
-        private String upperLeftCornerUrl;
-        @DrawableRes
-        private int leftMiddleResId;
-        private String leftMiddleUrl;
-        @DrawableRes
-        private int rightMiddleResId;
-        private String rightMiddleUrl;
-        @DrawableRes
-        private int lowerLeftCornerResId;
-        private String lowerLeftCornerUrl;
-        @DrawableRes
-        private int lowerRightCornerResId;
-        private String lowerRightCornerUrl;
+        private DialogDecorationItem upperLeftCornerItem;
+        private DialogDecorationItem leftMiddleItem;
+        private DialogDecorationItem rightMiddleItem;
+        private DialogDecorationItem lowerLeftCornerItem;
+        private DialogDecorationItem lowerRightCornerItem;
 
-        public void setUpperLeftCornerUrl(String upperLeftCornerUrl) {
-            this.upperLeftCornerUrl = upperLeftCornerUrl;
+        public void setUpperLeftCornerItem(DialogDecorationItem upperLeftCornerItem) {
+            this.upperLeftCornerItem = upperLeftCornerItem;
         }
 
-        public void setLeftMiddleUrl(String leftMiddleUrl) {
-            this.leftMiddleUrl = leftMiddleUrl;
+        public void setLeftMiddleItem(DialogDecorationItem leftMiddleItem) {
+            this.leftMiddleItem = leftMiddleItem;
         }
 
-        public void setRightMiddleUrl(String rightMiddleUrl) {
-            this.rightMiddleUrl = rightMiddleUrl;
+        public void setRightMiddleItem(DialogDecorationItem rightMiddleItem) {
+            this.rightMiddleItem = rightMiddleItem;
         }
 
-        public void setLowerLeftCornerUrl(String lowerLeftCornerUrl) {
-            this.lowerLeftCornerUrl = lowerLeftCornerUrl;
+        public void setLowerLeftCornerItem(DialogDecorationItem lowerLeftCornerItem) {
+            this.lowerLeftCornerItem = lowerLeftCornerItem;
         }
 
-        public void setLowerRightCornerUrl(String lowerRightCornerUrl) {
-            this.lowerRightCornerUrl = lowerRightCornerUrl;
-        }
-
-        public void setUpperLeftCornerResId(int upperLeftCornerResId) {
-            this.upperLeftCornerResId = upperLeftCornerResId;
-        }
-
-        public void setLeftMiddleResId(int leftMiddleResId) {
-            this.leftMiddleResId = leftMiddleResId;
-        }
-
-        public void setRightMiddleResId(int rightMiddleResId) {
-            this.rightMiddleResId = rightMiddleResId;
-        }
-
-        public void setLowerLeftCornerResId(int lowerLeftCornerResId) {
-            this.lowerLeftCornerResId = lowerLeftCornerResId;
-        }
-
-        public void setLowerRightCornerResId(int lowerRightCornerResId) {
-            this.lowerRightCornerResId = lowerRightCornerResId;
+        public void setLowerRightCornerItem(DialogDecorationItem lowerRightCornerItem) {
+            this.lowerRightCornerItem = lowerRightCornerItem;
         }
     }
 
@@ -297,7 +283,7 @@ public class VipRightsDialogUtil {
         View.OnClickListener onCloseClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (dialogCallback != null){
+                if (dialogCallback != null) {
                     dialogCallback.onCloseClick();
                 }
             }
@@ -459,17 +445,27 @@ public class VipRightsDialogUtil {
 
         if (dialogDecoration == null) {
             dialogDecoration = new DialogDecoration();
-            dialogDecoration.upperLeftCornerResId = R.drawable.crown;
-            dialogDecoration.lowerLeftCornerResId = R.drawable.ribbon_green;
-            dialogDecoration.lowerRightCornerResId = R.drawable.ribbon_blue;
-            dialogDecoration.leftMiddleResId = R.drawable.shake_ball_left;
-            dialogDecoration.rightMiddleResId = R.drawable.shake_ball_right;
+            dialogDecoration.upperLeftCornerItem = new DialogDecorationItem().setResId(R.drawable.crown);
+            dialogDecoration.lowerLeftCornerItem = new DialogDecorationItem().setResId(R.drawable.ribbon_green);
+            dialogDecoration.lowerRightCornerItem = new DialogDecorationItem().setResId(R.drawable.ribbon_blue);
+            dialogDecoration.leftMiddleItem = new DialogDecorationItem().setResId(R.drawable.shake_ball_left);
+            dialogDecoration.rightMiddleItem = new DialogDecorationItem().setResId(R.drawable.shake_ball_right);
         }
-        setDialogDecorationItem(context, upperLeftCorner, dialogDecoration.upperLeftCornerUrl, dialogDecoration.upperLeftCornerResId, R.drawable.crown);
-        setDialogDecorationItem(context, lowerLeftCorner, dialogDecoration.lowerLeftCornerUrl, dialogDecoration.lowerLeftCornerResId, R.drawable.ribbon_green);
-        setDialogDecorationItem(context, lowerRightCorner, dialogDecoration.lowerRightCornerUrl, dialogDecoration.lowerRightCornerResId, R.drawable.ribbon_blue);
-        setDialogDecorationItem(context, leftMiddle, dialogDecoration.leftMiddleUrl, dialogDecoration.leftMiddleResId, R.drawable.shake_ball_left);
-        setDialogDecorationItem(context, rightMiddle, dialogDecoration.rightMiddleUrl, dialogDecoration.rightMiddleResId, R.drawable.shake_ball_right);
+
+        if (dialogDecoration.upperLeftCornerItem == null
+                && dialogDecoration.lowerLeftCornerItem == null
+                && dialogDecoration.lowerRightCornerItem == null
+                && dialogDecoration.rightMiddleItem == null
+                && dialogDecoration.leftMiddleItem == null
+
+        ) {
+            throw new IllegalArgumentException("you want custom dialog decoration, but you didn't set any decoration item");
+        }
+        setDialogDecorationItem(context, upperLeftCorner, dialogDecoration.upperLeftCornerItem, R.drawable.crown);
+        setDialogDecorationItem(context, lowerLeftCorner, dialogDecoration.lowerLeftCornerItem, R.drawable.ribbon_green);
+        setDialogDecorationItem(context, lowerRightCorner, dialogDecoration.lowerRightCornerItem, R.drawable.ribbon_blue);
+        setDialogDecorationItem(context, leftMiddle, dialogDecoration.leftMiddleItem, R.drawable.shake_ball_left);
+        setDialogDecorationItem(context, rightMiddle, dialogDecoration.rightMiddleItem, R.drawable.shake_ball_right);
 
     }
 
@@ -543,28 +539,22 @@ public class VipRightsDialogUtil {
      *
      * @param context
      * @param decorationItem
-     * @param pictureUrl
-     * @param decorationResId
      * @param defaultResId
      */
-    public static void setDialogDecorationItem(Context context,ImageView decorationItem, String pictureUrl,
-                                               int decorationResId, @DrawableRes int defaultResId) {
-        if (TextUtils.isEmpty(pictureUrl)){
-            setDialogDecorationItemBackground(decorationItem, decorationResId);
-        }else {
+    public static void setDialogDecorationItem(Context context, ImageView imageViewItem, DialogDecorationItem decorationItem, @DrawableRes int defaultResId) {
+        if (decorationItem == null || TextUtils.isEmpty(decorationItem.resUrl)) {
+            setDialogDecorationItemBackground(imageViewItem, decorationItem == null ? 0 : decorationItem.resId);
+        } else {
             Glide.with(context)
-                    .load(pictureUrl)
+                    .load(decorationItem.resUrl)
                     .placeholder(defaultResId)
-                    .into(decorationItem);
+                    .into(imageViewItem);
         }
     }
+
     /**
-     * 显示默认的
-     * 隐藏
-     * 显示自己订制的
-     *
-     * @param decorationItem
-     * @param decorationResId
+     * @param decorationItem  要显示的资源
+     * @param decorationResId 显示自己订制的资源
      */
     public static void setDialogDecorationItemBackground(ImageView decorationItem, int decorationResId) {
         if (decorationResId > 0) {
