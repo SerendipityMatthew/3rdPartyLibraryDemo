@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:oneshot="false">
+    <item android:duration="50">
+        <rotate
+            android:fromDegrees="0"
+            android:pivotX="100%"
+            android:pivotY="100%"
+            android:toDegrees="5">
+            <bitmap android:src="@drawable/red_pkg" />
+        </rotate>
+    </item>
+    <item android:duration="50">
+        <rotate
+            android:fromDegrees="5"
+            android:pivotX="100%"
+            android:pivotY="100%"
+            android:toDegrees="10">
+            <bitmap android:src="@drawable/red_pkg" />
+        </rotate>
+    </item>
+    <item android:duration="50">
+        <rotate
+            android:fromDegrees="10"
+            android:pivotX="100%"
+            android:pivotY="100%"
+            android:toDegrees="5">
+            <bitmap android:src="@drawable/red_pkg" />
+        </rotate>
+    </item>
+    <item android:duration="50">
+        <rotate
+            android:fromDegrees="5"
+            android:pivotX="100%"
+            android:pivotY="100%"
+            android:toDegrees="0">
+            <bitmap android:src="@drawable/red_pkg" />
+        </rotate>
+    </item>
+    <item android:duration="50">
+        <rotate
+            android:fromDegrees="0"
+            android:pivotX="0%"
+            android:pivotY="100%"
+            android:toDegrees="-5">
+            <bitmap android:src="@drawable/red_pkg" />
+        </rotate>
+    </item>
+    <item android:duration="50">
+        <rotate
+            android:fromDegrees="-5"
+            android:pivotX="0%"
+            android:pivotY="100%"
+            android:toDegrees="-10">
+            <bitmap android:src="@drawable/red_pkg" />
+        </rotate>
+    </item>
+    <item android:duration="50">
+        <rotate
+            android:fromDegrees="-10"
+            android:pivotX="0%"
+            android:pivotY="100%"
+            android:toDegrees="-5">
+            <bitmap android:src="@drawable/red_pkg" />
+        </rotate>
+    </item>
+    <item android:duration="50">
+        <rotate
+            android:fromDegrees="-5"
+            android:pivotX="0%"
+            android:pivotY="100%"
+            android:toDegrees="0">
+            <bitmap android:src="@drawable/red_pkg" />
+        </rotate>
+    </item>
+</animation-list>

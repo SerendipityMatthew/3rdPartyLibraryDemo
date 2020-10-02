@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="hello_array">
+        <item>Matthew</item>
+        <item>Mona</item>
+        <item>Angela</item>
+        <item>Lilian</item>
+    </string-array>
+</resources>

@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Custom Dialog</string>
+    <string name="start_quickly_title">快速上手</string>
+    <string name="start_quickly_description">快速了解双开助手</string>
+    <string name="vip_rights_title">会员权益</string>
+    <string name="vip_rights_description">高效稳定，保护隐私安全</string>
+    <string name="user_tips_title">使用贴士</string>
+    <string name="user_tips_description">更多体验流畅小技巧</string>
+    <string name="share_for_coupon_title">分享邀请</string>
+    <string name="share_for_coupon_description">邀好友领折扣券</string>
+
+    <string name="reward_to_free_trial">看视频,送会员</string>
+    <string name="dialog_show_vip_left_sign_text">低至￥0.16元/天</string>
+    <string name="toast_deny_add1">该应用已添加过分身，开通VIP会员解锁更多权益</string>
+    <string name="toast_deny_add2">应用多开是会员专享权益，开通VIP会员解锁更多权益</string>
+    <string name="vip_unlimit_multi_open">无限多开</string>
+    <string name="vip_no_ad">免广告</string>
+    <string name="vip_private_space">私密空间</string>
+    <string name="free_trial_3_day">免费试用</string>
+    <string name="reward_to_free_trial_3_day">看视频送VIP</string>
+    <string name="toast_deny_add3">该应用已添加过分身\n开通VIP会员解锁更多权益</string>
+    <string name="vip_anti_title">防封号</string>
+    <string name="time_limit_to_pay">限时购买</string>
+</resources>
