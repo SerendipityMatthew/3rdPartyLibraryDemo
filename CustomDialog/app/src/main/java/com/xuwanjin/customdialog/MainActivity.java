@@ -108,11 +108,11 @@ public class MainActivity extends AppCompatActivity {
         vipRightsItemList.add(itemView1);
         vipRightsItemList.add(itemView2);
         vipRightsItemList.add(itemView3);
+        vipRightsItemList.add(itemView4);
 
         VipRightsDialogUtil.DialogDecoration dialogDecoration = new VipRightsDialogUtil.DialogDecoration();
-        dialogDecoration.setLeftMiddleResId(R.drawable.shake_ball_left);
-        dialogDecoration.setRightMiddleResId(R.drawable.shake_ball_right);
-        dialogDecoration.setUpperLeftCornerResId(R.drawable.crown);
+        VipRightsDialogUtil.DialogDecorationItem crownItem = new VipRightsDialogUtil.DialogDecorationItem();
+        dialogDecoration.setUpperLeftCornerItem(crownItem);
         builder
                 .setDialogContent(getString(R.string.toast_deny_add3))
                 .setIsShowLeftButton(true)
@@ -121,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                 .setRightButton(rightButton)
                 .setVipRightsItemList(vipRightsItemList)
                 .setDialogCallback(dialogCallback)
+                .setDialogDecoration(dialogDecoration)
                 .setIsCanceledOnTouchOutside(true)
                 .dialogOnShow();
     }

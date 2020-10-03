@@ -30,6 +30,7 @@
 
 
         <LinearLayout
+            android:id="@+id/vip_rights_desc_container"
             android:layout_width="291dp"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"

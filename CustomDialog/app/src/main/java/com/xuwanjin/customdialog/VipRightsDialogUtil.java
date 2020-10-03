@@ -87,6 +87,10 @@ public class VipRightsDialogUtil {
         private boolean isCanceledOnTouchOutside;
 
         private CharSequence dialogContent;
+        @DrawableRes
+        private int dialogContentResId;
+        @DrawableRes
+        private int vipRightsDescContainerResId;
         private List<VipRightsItem> vipRightsItemList;
         private DialogButton leftButton;
         private DialogButton rightButton;
@@ -136,6 +140,15 @@ public class VipRightsDialogUtil {
                 vipRightsDialog.dialogContent = content;
                 return this;
             }
+            public Builder setDialogContentResId(@DrawableRes int resId) {
+                vipRightsDialog.dialogContentResId = resId;
+                return this;
+            }
+            public Builder setVipRightsDescContainerResId(@DrawableRes int resId) {
+                vipRightsDialog.vipRightsDescContainerResId = resId;
+                return this;
+            }
+
 
             public Builder setDialogDecoration(DialogDecoration dialogDecoration) {
                 vipRightsDialog.dialogDecoration = dialogDecoration;
@@ -155,6 +168,8 @@ public class VipRightsDialogUtil {
                 vipRightsDialog.vipRightsItemList = itemViewList;
                 return this;
             }
+
+
 
             public void dialogOnShow() {
                 showVipRightsDialog(mContext, vipRightsDialog);
@@ -277,6 +292,13 @@ public class VipRightsDialogUtil {
         ImageView close = contentView.findViewById(R.id.iv_close);
         TextView content = contentView.findViewById(R.id.vip_rights_content);
         content.setText(vipRightsDialog.dialogContent);
+
+        if (vipRightsDialog.dialogContentResId > 0){
+            content.setBackgroundResource(vipRightsDialog.dialogContentResId);
+        }
+        if (vipRightsDialog.vipRightsDescContainerResId > 0){
+            content.setBackgroundResource(vipRightsDialog.vipRightsDescContainerResId);
+        }
 
 
         final DialogCallback dialogCallback = vipRightsDialog.dialogCallback;
