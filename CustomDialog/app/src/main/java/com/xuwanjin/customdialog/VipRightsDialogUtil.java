@@ -287,6 +287,7 @@ public class VipRightsDialogUtil {
         RelativeLayout rightButtonAndSuperscriptContainer = contentView.findViewById(R.id.right_button_and_superscript_container);
         LinearLayout leftButtonContainer = contentView.findViewById(R.id.left_button_container);
         LinearLayout rightButtonContainer = contentView.findViewById(R.id.right_button_container);
+        LinearLayout vipRightsDescContainer = contentView.findViewById(R.id.vip_rights_desc_container);
         TextView leftButtonSuperscript = contentView.findViewById(R.id.left_button_superscript);
         TextView rightButtonSuperscript = contentView.findViewById(R.id.right_button_superscript);
         ImageView close = contentView.findViewById(R.id.iv_close);
@@ -297,7 +298,7 @@ public class VipRightsDialogUtil {
             content.setBackgroundResource(vipRightsDialog.dialogContentResId);
         }
         if (vipRightsDialog.vipRightsDescContainerResId > 0){
-            content.setBackgroundResource(vipRightsDialog.vipRightsDescContainerResId);
+            vipRightsDescContainer.setBackgroundResource(vipRightsDialog.vipRightsDescContainerResId);
         }
 
 
