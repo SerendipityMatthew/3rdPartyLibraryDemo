@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialog_container"
+    android:layout_width="370dp"
+    android:layout_height="360dp"
+    android:layout_centerInParent="true"
+    android:layout_gravity="center"
+    android:background="#FF0000"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/upper_left_corner"
+        android:layout_width="82dp"
+        android:layout_height="67dp"
+        android:background="@drawable/crown"
+        android:elevation="3dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:id="@+id/vip_rights_content"
+            android:layout_width="match_parent"
+            android:layout_height="108dp"
+            android:background="@drawable/bg_show_vip_to_reward_top"
+            android:gravity="center"
+            android:text="@string/toast_deny_add3"
+            android:textColor="#5A491E"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_vip_rights_item"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="48dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintTop_toBottomOf="@id/vip_rights_content"
+            tools:itemCount="4"
+            tools:layout_editor_absoluteX="43dp"
+            tools:listitem="@layout/vip_rights_item">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/left_button_function_desc"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="@string/time_limit_to_pay"
+            android:textColor="#555555"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/right_button_function_desc"
+            app:layout_constraintTop_toBottomOf="@id/rv_vip_rights_item" />
+
+
+        <TextView
+            android:id="@+id/left_button_superscript"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/dialog_pay_sign_bg"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/dialog_show_vip_left_sign_text"
+            android:textColor="@color/dialog_button_right_text_color"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/left_button_function_desc"
+            app:layout_constraintLeft_toLeftOf="parent" />
+
+
+        <TextView
+            android:id="@+id/right_button_function_desc"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:lines="1"
+            android:text="@string/free_trial_3_day"
+            android:textColor="#5A491E"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintLeft_toRightOf="@id/left_button_function_desc"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_vip_rights_item" />
+
+
+        <TextView
+            android:id="@+id/right_button_superscript"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_pay_sign_bg"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/dialog_show_vip_left_sign_text"
+            android:textColor="@color/dialog_button_right_text_color"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/right_button_function_desc"
+            app:layout_constraintLeft_toLeftOf="@id/right_button_function_desc" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/left_middle"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/shake_ball_left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/right_middle"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/shake_ball_right"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/lower_right_corner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/ribbon_blue"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <ImageView
+        android:id="@+id/lower_left_corner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/ribbon_green"
+        android:elevation="2dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:padding="5dp"
+        android:src="@drawable/close_black"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         rightButton.setButtonContainerBackground(rightColorDrawable);
         VipRightsDialogUtil.DialogButton leftButton = new VipRightsDialogUtil.DialogButton();
         leftButton.setButtonText("登录会员");
-        leftButton.setShowSuperscript(false);
+        leftButton.setShowSuperscript(true);
 
         ColorDrawable leftColorDrawable = new ColorDrawable();
         leftColorDrawable.setColor(Color.parseColor("#F4C663"));
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
                 .setVipRightsItemList(vipRightsItemList)
                 .setDialogCallback(dialogCallback)
                 .setDialogDecoration(dialogDecoration)
-                .setIsCanceledOnTouchOutside(true)
+                .setIsCanceledOnTouchOutside(false)
                 .dialogOnShow();
     }
 }

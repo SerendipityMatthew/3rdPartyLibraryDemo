@@ -1,10 +1,12 @@
 package com.xuwanjin.customdialog;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -140,10 +142,12 @@ public class VipRightsDialogUtil {
                 vipRightsDialog.dialogContent = content;
                 return this;
             }
+
             public Builder setDialogContentResId(@DrawableRes int resId) {
                 vipRightsDialog.dialogContentResId = resId;
                 return this;
             }
+
             public Builder setVipRightsDescContainerResId(@DrawableRes int resId) {
                 vipRightsDialog.vipRightsDescContainerResId = resId;
                 return this;
@@ -170,9 +174,8 @@ public class VipRightsDialogUtil {
             }
 
 
-
             public void dialogOnShow() {
-                showVipRightsDialog(mContext, vipRightsDialog);
+                showVipRightsDialog((Activity) mContext, vipRightsDialog);
             }
         }
 
@@ -268,7 +271,8 @@ public class VipRightsDialogUtil {
     }
 
 
-    public static void showVipRightsDialog(final Context activity, final VipRightsDialog vipRightsDialog) {
+    public static void showVipRightsDialog(final Activity activity, final VipRightsDialog vipRightsDialog) {
+        Log.d(TAG, "showVipRightsDialog: ");
         if (vipRightsDialog == null) {
             throw new NullPointerException("vipRightsDialog should not be null");
         }
@@ -294,11 +298,8 @@ public class VipRightsDialogUtil {
         TextView content = contentView.findViewById(R.id.vip_rights_content);
         content.setText(vipRightsDialog.dialogContent);
 
-        if (vipRightsDialog.dialogContentResId > 0){
+        if (vipRightsDialog.dialogContentResId > 0) {
             content.setBackgroundResource(vipRightsDialog.dialogContentResId);
-        }
-        if (vipRightsDialog.vipRightsDescContainerResId > 0){
-            vipRightsDescContainer.setBackgroundResource(vipRightsDialog.vipRightsDescContainerResId);
         }
 
 
@@ -455,7 +456,181 @@ public class VipRightsDialogUtil {
         };
 
         dialog.setOnShowListener(onShowListener);
-        dialog.show();
+        if (!activity.isFinishing()) {
+            dialog.show();
+        }
+    }
+
+    public static void showVipRightsDialogConstraintLayout(final Activity activity, final VipRightsDialog vipRightsDialog) {
+        Log.d(TAG, "showVipRightsDialog: ");
+        if (vipRightsDialog == null) {
+            throw new NullPointerException("vipRightsDialog should not be null");
+        }
+        int themeResId = vipRightsDialog.themeResId;
+        final Dialog dialog = new Dialog(activity, themeResId > 0 ? themeResId : R.style.pop_custom_dialog_theme);
+        final View contentView = LayoutInflater.from(activity).inflate(R.layout.vip_dialog, null);
+        dialog.setContentView(contentView);
+
+        setDialogDecoration(activity, contentView, vipRightsDialog.dialogDecoration);
+
+        fillVipRightsItem(activity, contentView, vipRightsDialog);
+
+        TextView leftFunctionDesc = contentView.findViewById(R.id.left_button_function_desc);
+        TextView rightFunctionDesc = contentView.findViewById(R.id.right_button_function_desc);
+        TextView leftButtonSuperscript = contentView.findViewById(R.id.left_button_superscript);
+        TextView rightButtonSuperscript = contentView.findViewById(R.id.right_button_superscript);
+        ImageView close = contentView.findViewById(R.id.iv_close);
+        TextView content = contentView.findViewById(R.id.vip_rights_content);
+        content.setText(vipRightsDialog.dialogContent);
+
+        if (vipRightsDialog.dialogContentResId > 0) {
+            content.setBackgroundResource(vipRightsDialog.dialogContentResId);
+        }
+
+
+        final DialogCallback dialogCallback = vipRightsDialog.dialogCallback;
+        View.OnClickListener onCloseClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dialogCallback != null) {
+                    dialogCallback.onCloseClick();
+                }
+            }
+        };
+        close.setOnClickListener(onCloseClickListener);
+
+        final View.OnClickListener rightFunctionClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dialogCallback != null) {
+                    dialogCallback.onRightClick();
+                }
+                dialog.dismiss();
+            }
+        };
+        final View.OnClickListener leftFunctionClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dialogCallback != null) {
+                    dialogCallback.onLeftClick();
+                }
+                dialog.dismiss();
+            }
+        };
+
+        if (!vipRightsDialog.isShowLeftButton && !vipRightsDialog.isShowRightButton) {
+            return;
+        }
+
+        if (vipRightsDialog.isShowLeftButton && vipRightsDialog.isShowRightButton) {
+            if (vipRightsDialog.leftButton == null || vipRightsDialog.rightButton == null) {
+                throw new IllegalArgumentException("have not set the left or right button");
+            }
+            leftFunctionDesc.setVisibility(View.VISIBLE);
+            rightFunctionDesc.setVisibility(View.VISIBLE);
+            leftFunctionDesc.setOnClickListener(leftFunctionClickListener);
+            rightFunctionDesc.setOnClickListener(rightFunctionClickListener);
+            leftFunctionDesc.setText(vipRightsDialog.leftButton.buttonText);
+            rightFunctionDesc.setText(vipRightsDialog.rightButton.buttonText);
+            if (vipRightsDialog.leftButton.isShowSuperscript) {
+                leftButtonSuperscript.setVisibility(View.VISIBLE);
+                leftButtonSuperscript.setText(vipRightsDialog.leftButton.superscriptText);
+            } else {
+                leftButtonSuperscript.setVisibility(View.GONE);
+            }
+
+            if (vipRightsDialog.rightButton.isShowSuperscript) {
+                rightButtonSuperscript.setVisibility(View.VISIBLE);
+                rightButtonSuperscript.setText(vipRightsDialog.rightButton.superscriptText);
+            } else {
+                rightButtonSuperscript.setVisibility(View.GONE);
+            }
+        }
+
+        if (vipRightsDialog.isShowLeftButton && !vipRightsDialog.isShowRightButton) {
+            if (vipRightsDialog.leftButton == null) {
+                throw new IllegalArgumentException("have not set the left button");
+            }
+            leftFunctionDesc.setVisibility(View.VISIBLE);
+            rightFunctionDesc.setVisibility(View.GONE);
+            leftFunctionDesc.setText(vipRightsDialog.leftButton.buttonText);
+            leftFunctionDesc.setOnClickListener(leftFunctionClickListener);
+            if (vipRightsDialog.leftButton.isShowSuperscript) {
+                leftButtonSuperscript.setVisibility(View.VISIBLE);
+                leftButtonSuperscript.setText(vipRightsDialog.leftButton.superscriptText);
+            } else {
+                rightButtonSuperscript.setVisibility(View.GONE);
+            }
+        }
+
+        if (!vipRightsDialog.isShowLeftButton && vipRightsDialog.isShowRightButton) {
+            if (vipRightsDialog.rightButton == null) {
+                throw new IllegalArgumentException("have not set the right button");
+            }
+            leftFunctionDesc.setVisibility(View.GONE);
+            rightFunctionDesc.setVisibility(View.VISIBLE);
+            rightFunctionDesc.setOnClickListener(rightFunctionClickListener);
+            rightFunctionDesc.setText(vipRightsDialog.rightButton.buttonText);
+            if (vipRightsDialog.rightButton.isShowSuperscript) {
+                rightButtonSuperscript.setVisibility(View.VISIBLE);
+                rightButtonSuperscript.setText(vipRightsDialog.rightButton.superscriptText);
+            } else {
+                rightButtonSuperscript.setVisibility(View.GONE);
+            }
+        }
+
+        final DialogInterface.OnDismissListener onDialogDismiss = new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                if (dialogCallback != null) {
+                    dialogCallback.onDialogDismiss();
+                }
+            }
+        };
+        dialog.setOnDismissListener(onDialogDismiss);
+
+        DialogInterface.OnKeyListener onKeyCodeBackListener = new DialogInterface.OnKeyListener() {
+            @Override
+            public boolean onKey(DialogInterface dialogInterface, int keyCode, KeyEvent keyEvent) {
+                if (keyCode == KeyEvent.KEYCODE_BACK && dialogCallback != null) {
+                    dialogCallback.onKeyCodeBack(keyEvent);
+                } else if (dialogCallback != null) {
+                    dialogCallback.onKeyCode(keyCode, keyEvent);
+                }
+                return false;
+            }
+        };
+        dialog.setOnKeyListener(onKeyCodeBackListener);
+
+        dialog.setCanceledOnTouchOutside(vipRightsDialog.isCanceledOnTouchOutside);
+        DialogInterface.OnCancelListener onCancelListener = new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialog) {
+                if (dialogCallback != null && vipRightsDialog.isCanceledOnTouchOutside) {
+                    dialogCallback.onDialogCancel();
+                }
+                if (dialog != null) {
+                    dialog.dismiss();
+                }
+            }
+        };
+
+        dialog.setOnCancelListener(onCancelListener);
+        DialogInterface.OnShowListener onShowListener = new DialogInterface.OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialog) {
+                Log.d(TAG, "onShow: ");
+                if (dialogCallback != null) {
+                    dialogCallback.onDialogShow();
+                }
+            }
+        };
+
+        dialog.setOnShowListener(onShowListener);
+
+        if (!activity.isFinishing()) {
+            dialog.show();
+        }
     }
 
     private static void setDialogDecoration(Context context, View contentView, DialogDecoration dialogDecoration) {
@@ -536,6 +711,7 @@ public class VipRightsDialogUtil {
             @Override
             public VipRightsItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View itemView = LayoutInflater.from(activity).inflate(R.layout.vip_rights_item, parent, false);
+                Log.d(TAG, "onCreateViewHolder: recyclerView.getWidth() = " + recyclerView.getWidth());
                 itemView.getLayoutParams().width = recyclerView.getWidth() / itemList.size();
                 return new VipRightsItemViewHolder(itemView);
             }
@@ -564,9 +740,10 @@ public class VipRightsDialogUtil {
      * @param decorationItem
      * @param defaultResId
      */
-    public static void  setDialogDecorationItem(Context context, ImageView imageViewItem, DialogDecorationItem decorationItem, @DrawableRes int defaultResId) {
+    public static void setDialogDecorationItem(Context context, ImageView imageViewItem, DialogDecorationItem decorationItem, @DrawableRes int defaultResId) {
+        Log.d(TAG, "setDialogDecorationItem: decorationItem = " + decorationItem);
         if (decorationItem == null || TextUtils.isEmpty(decorationItem.resUrl)) {
-            setDialogDecorationItemBackground(imageViewItem, decorationItem == null ? 0 : decorationItem.resId);
+            setDialogDecorationItemBackground(imageViewItem, decorationItem == null ? defaultResId : decorationItem.resId);
         } else {
             Glide.with(context)
                     .load(decorationItem.resUrl)
