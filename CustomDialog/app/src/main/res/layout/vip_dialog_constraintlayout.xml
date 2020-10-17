@@ -3,31 +3,37 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dialog_container"
-    android:layout_width="390dp"
+    android:layout_width="370dp"
     android:layout_height="400dp"
-    android:layout_centerInParent="true"
     android:layout_gravity="center"
-    android:background="#FF0000"
+    android:background="#00000000"
     android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/upper_left_corner"
-        android:layout_width="82dp"
-        android:layout_height="67dp"
-        android:background="@drawable/crown"
-        android:elevation="3dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
+        android:layout_marginBottom="30dp"
+        android:background="@android:color/white"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
+        <ImageView
+            android:id="@+id/iv_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:elevation="2dp"
+            android:src="@drawable/close_black"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/vip_rights_content"
@@ -127,9 +133,19 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
+        android:id="@+id/upper_left_corner"
+        android:layout_width="82dp"
+        android:layout_height="67dp"
+        android:background="@drawable/crown"
+        android:elevation="3dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
         android:id="@+id/left_middle"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginLeft="20dp"
         android:background="@drawable/shake_ball_left"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -139,6 +155,7 @@
         android:id="@+id/right_middle"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/shake_ball_right"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -148,7 +165,8 @@
         android:id="@+id/lower_right_corner"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="55dp"
+        android:layout_marginRight="20dp"
         android:background="@drawable/ribbon_blue"
         android:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -158,18 +176,11 @@
         android:id="@+id/lower_left_corner"
         android:layout_width="20dp"
         android:layout_height="20dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="75dp"
         android:background="@drawable/ribbon_green"
         android:elevation="2dp"
+        android:layout_marginLeft="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
 
-    <ImageView
-        android:id="@+id/iv_close"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:padding="5dp"
-        android:src="@drawable/close_black"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
