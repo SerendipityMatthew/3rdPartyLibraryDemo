@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dialog_container"
-    android:layout_width="370dp"
-    android:layout_height="360dp"
+    android:layout_width="390dp"
+    android:layout_height="400dp"
     android:layout_centerInParent="true"
     android:layout_gravity="center"
     android:background="#FF0000"
@@ -38,8 +38,8 @@
             android:text="@string/toast_deny_add3"
             android:textColor="#5A491E"
             android:textSize="16sp"
-            app:layout_constraintTop_toTopOf="parent" />
-
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="0dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_vip_rights_item"
@@ -146,9 +146,9 @@
 
     <ImageView
         android:id="@+id/lower_right_corner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/ribbon_blue"
         android:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -156,9 +156,9 @@
 
     <ImageView
         android:id="@+id/lower_left_corner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="50dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="30dp"
         android:background="@drawable/ribbon_green"
         android:elevation="2dp"
         app:layout_constraintBottom_toBottomOf="parent"

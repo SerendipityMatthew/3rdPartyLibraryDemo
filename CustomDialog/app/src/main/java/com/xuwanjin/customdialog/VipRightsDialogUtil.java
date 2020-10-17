@@ -175,7 +175,7 @@ public class VipRightsDialogUtil {
 
 
             public void dialogOnShow() {
-                showVipRightsDialog((Activity) mContext, vipRightsDialog);
+                showVipRightsDialogConstraintLayout((Activity) mContext, vipRightsDialog);
             }
         }
 
@@ -468,7 +468,7 @@ public class VipRightsDialogUtil {
         }
         int themeResId = vipRightsDialog.themeResId;
         final Dialog dialog = new Dialog(activity, themeResId > 0 ? themeResId : R.style.pop_custom_dialog_theme);
-        final View contentView = LayoutInflater.from(activity).inflate(R.layout.vip_dialog, null);
+        final View contentView = LayoutInflater.from(activity).inflate(R.layout.vip_dialog_constraintlayout, null);
         dialog.setContentView(contentView);
 
         setDialogDecoration(activity, contentView, vipRightsDialog.dialogDecoration);
