@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.text.font.FontFamily.Companion.SansSerif
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
@@ -30,7 +31,7 @@ class TextActivity : AppCompatActivity() {
         setContent {
             Column {
                 val context = ContextAmbient.current
-                SimpleText(context , getString(R.string.app_name))
+                SimpleText(context, getString(R.string.app_name))
             }
         }
     }
@@ -40,18 +41,29 @@ class TextActivity : AppCompatActivity() {
 fun SimpleText(context: Context, string: String) {
     Text(
         text = string,
-        modifier = Modifier.wrapContentHeight().clickable(onClick = {
-            Toast.makeText(context, string, Toast.LENGTH_SHORT).show()
-        }),
+        modifier = Modifier.wrapContentHeight().clickable(
+            onClick = {
+                Toast.makeText(context, string, Toast.LENGTH_SHORT).show()
+            },
+            onLongClick = {
+                Toast.makeText(context, "onLongClick", Toast.LENGTH_SHORT).show()
+            },
+            onDoubleClick = {
+                Toast.makeText(context, "onDoubleClick", Toast.LENGTH_SHORT).show()
+            }
+        ),
         color = Color(context.getColor(R.color.design_default_color_primary_dark)),
         fontSize = 20.sp,
-        textAlign = TextAlign.Left,
+        textAlign = TextAlign.Center,
         textDecoration = TextDecoration.LineThrough,
         letterSpacing = TextUnit.Companion.Sp(12),
         lineHeight = TextUnit.Companion.Sp(30),
         fontFamily = SansSerif,
         fontWeight = FontWeight.ExtraLight,
+        fontStyle = FontStyle.Italic,
+        softWrap = true,
+        onTextLayout = {
 
-
-        )
+        }
+    )
 }
