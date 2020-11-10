@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
 import me.xuwanjin.jetpackcomposedemo.text.TextActivity
+import me.xuwanjin.jetpackcomposedemo.text.TextFieldActivity
 
 class MainActivity : AppCompatActivity() {
     @ExperimentalLayout
@@ -36,6 +37,11 @@ class MainActivity : AppCompatActivity() {
                     context = context,
                     intent = Intent(context, TextActivity::class.java),
                     buttonText = "text"
+                )
+                ButtonComponent(
+                    context = context,
+                    intent = Intent(context, TextFieldActivity::class.java),
+                    buttonText = "textfield"
                 )
             }
         }

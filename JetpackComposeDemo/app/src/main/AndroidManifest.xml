@@ -24,6 +24,11 @@
             android:label="@string/app_name"
             android:theme="@style/Theme.JetpackComposeDemo.NoActionBar">
         </activity>
+        <activity
+            android:name=".text.TextFieldActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.JetpackComposeDemo.NoActionBar">
+        </activity>
     </application>
 
 </manifest>
