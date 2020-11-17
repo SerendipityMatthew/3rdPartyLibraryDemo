@@ -23,6 +23,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
+import me.xuwanjin.jetpackcomposedemo.constraintlayout.ConstraintLayoutActivity
 import me.xuwanjin.jetpackcomposedemo.text.TextActivity
 import me.xuwanjin.jetpackcomposedemo.text.TextFieldActivity
 
@@ -43,6 +44,11 @@ class MainActivity : AppCompatActivity() {
                     intent = Intent(context, TextFieldActivity::class.java),
                     buttonText = "textfield"
                 )
+                ButtonComponent(
+                    context = context,
+                    intent = Intent(context, ConstraintLayoutActivity::class.java) ,
+                    buttonText = "ConstraintLayoutActivity"
+                )
             }
         }
     }
@@ -56,7 +62,7 @@ fun ButtonComponent(context: Context, intent: Intent, buttonText: String) {
         },
         modifier = Modifier.padding(16.dp).fillMaxWidth(),
         shape = RoundedCornerShape(8.dp),
-        backgroundColor = Color.Green,
+        backgroundColor = Color.Gray,
     ) {
         Text(
             text = buttonText,
