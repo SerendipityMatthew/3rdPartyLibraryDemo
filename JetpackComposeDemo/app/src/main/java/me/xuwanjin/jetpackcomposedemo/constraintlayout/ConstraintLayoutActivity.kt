@@ -48,8 +48,8 @@ fun ConstraintLayoutTest(modifier: Modifier) {
                 .constrainAs(mona) {
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
-                    top.linkTo(parent.top, margin = 20.dp)
-                    bottom.linkTo(matthew.top, margin = 20.dp)
+                    top.linkTo(parent.top, margin = 250.dp)
+                    bottom.linkTo(matthew.top)
                 },
             color = Color.Red,
         )
@@ -85,7 +85,7 @@ fun ConstraintLayoutTest(modifier: Modifier) {
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
                     top.linkTo(matthew.bottom)
-                    bottom.linkTo(parent.bottom)
+                    bottom.linkTo(parent.bottom, 250.dp)
                 },
             color = Color.Red,
         )
